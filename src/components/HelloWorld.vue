@@ -32,9 +32,6 @@
         <h2 class="headline font-weight-bold mb-3">
           What's next?
         </h2>
-        <v-btn
-  elevation="2"
-> Bonjour</v-btn>
 
         <v-row justify="center">
           <a
