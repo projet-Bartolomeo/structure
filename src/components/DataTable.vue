@@ -3,10 +3,10 @@
     v-model="selected"
     :headers="headers"
     :items="emploi_du_temps"
-    item-key="name"
     show-select
-    sort-by="calories"
+    item-key="name"
     class="elevation-1"
+    sort-by="calories"
   >
     <template v-slot:top>
       <v-toolbar
@@ -23,7 +23,7 @@
           v-model="dialog"
           max-width="500px"
         >
-          <template v-slot:activator="{ on, attrs }">
+          <!-- <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary"
               dark
@@ -33,13 +33,13 @@
             >
               Nouveau cours
             </v-btn>
-          </template>
+          </template> -->
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ formTitle }}</span>
             </v-card-title>
 
-            <v-card-text>
+            <!-- <v-card-text>
               <v-container>
                 <v-row>
                   <v-col
@@ -104,7 +104,7 @@
                   </v-col>
                 </v-row>
               </v-container>
-            </v-card-text>
+            </v-card-text> -->
 
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -113,24 +113,24 @@
                 text
                 @click="close"
               >
-                Cancel
+                Annuler
               </v-btn>
-              <v-btn
+              <!-- <v-btn
                 color="blue darken-1"
                 text
                 @click="save"
               >
-                Save
-              </v-btn>
+                Sauvegarder
+              </v-btn> -->
             </v-card-actions>
           </v-card>
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+            <v-card-title class="text-h5">Est-vous sur de vouloir supprimer ce cours ?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="closeDelete">Annuler</v-btn>
               <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
@@ -138,14 +138,14 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
+    <template v-slot:[`item.actions`]="{ item }">
+      <!-- <v-icon
         small
         class="mr-2"
         @click="editItem(item)"
       >
         mdi-pencil
-      </v-icon>
+      </v-icon> -->
       <v-icon
         small
         @click="deleteItem(item)"
@@ -158,20 +158,24 @@
       mdi-message-text
     </v-icon>
     </template>
-    <template v-slot:no-data>
+    <!-- <template v-slot:no-data>
       <v-btn
         color="primary"
         @click="initialize"
       >
         Reset
       </v-btn>
-    </template>
+    </template> -->
   </v-data-table>
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'DataTable',
   data: () => ({
+    selected: [],
     dialog: false,
     dialogDelete: false,
     headers: [
@@ -188,34 +192,34 @@ export default {
       { text: 'Note', value: 'note' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
-    emploi_du_temps: [],
-    editedIndex: -1,
-    editedItem: {
-      name: '',
-      horraire: '',
-      description: '',
-      prix: 0,
-      nbr: '',
-      note: ''
-    },
-    defaultItem: {
-      name: '',
-      horraire: '',
-      description: '',
-      prix: 0,
-      nbr: '',
-      note: ''
-    }
+    emploi_du_temps: []
+    // editedIndex: -1,
+    // editedItem: {
+    //   name: '',
+    //   horraire: '',
+    //   description: '',
+    //   prix: 0,
+    //   nbr: '',
+    //   note: ''
+    // },
+    // defaultItem: {
+    //   name: '',
+    //   horraire: '',
+    //   description: '',
+    //   prix: 0,
+    //   nbr: '',
+    //   note: ''
+    // }
   }),
-  computed: {
-    formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-    }
-  },
+  // computed: {
+  //   formTitle () {
+  //     return this.editedIndex === -1 ? 'Nouveau cours' : 'Modifier cours'
+  //   }
+  // },
   watch: {
-    dialog (val) {
-      val || this.close()
-    },
+    // dialog (val) {
+    //   val || this.close()
+    // },
     dialogDelete (val) {
       val || this.closeDelete()
     }
@@ -309,11 +313,11 @@ export default {
         }
       ]
     },
-    editItem (item) {
-      this.editedIndex = this.emploi_du_temps.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
-    },
+    // editItem (item) {
+    //   this.editedIndex = this.emploi_du_temps.indexOf(item)
+    //   this.editedItem = Object.assign({}, item)
+    //   this.dialog = true
+    // },
     deleteItem (item) {
       this.editedIndex = this.emploi_du_temps.indexOf(item)
       this.editedItem = Object.assign({}, item)
@@ -323,28 +327,28 @@ export default {
       this.emploi_du_temps.splice(this.editedIndex, 1)
       this.closeDelete()
     },
-    close () {
-      this.dialog = false
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      })
-    },
+    // close () {
+    //   this.dialog = false
+    //   this.$nextTick(() => {
+    //     this.editedItem = Object.assign({}, this.defaultItem)
+    //     this.editedIndex = -1
+    //   })
+    // },
     closeDelete () {
       this.dialogDelete = false
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       })
-    },
-    save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.emploi_du_temps[this.editedIndex], this.editedItem)
-      } else {
-        this.emploi_du_temps.push(this.editedItem)
-      }
-      this.close()
     }
+    // save () {
+    //   if (this.editedIndex > -1) {
+    //     Object.assign(this.emploi_du_temps[this.editedIndex], this.editedItem)
+    //   } else {
+    //     this.emploi_du_temps.push(this.editedItem)
+    //   }
+    //   this.close()
+    // }
   }
-}
+})
 </script>
