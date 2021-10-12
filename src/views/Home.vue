@@ -1,5 +1,10 @@
 <template>
-  <hello-world />
+ <div>
+    <HelloWorld
+    />
+    <Usage
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -8,9 +13,10 @@ import HelloWorld from '../components/HelloWorld.vue'
 
 export default Vue.extend({
   name: 'Home',
+  
 
   components: {
-    HelloWorld
+    HelloWorld,
   }
 })
 </script>
