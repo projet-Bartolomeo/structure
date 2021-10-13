@@ -192,7 +192,9 @@ export default Vue.extend({
       { text: 'Note', value: 'note' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
-    emploi_du_temps: []
+    emploi_du_temps: [
+
+    ]
     // editedIndex: -1,
     // editedItem: {
     //   name: '',
@@ -232,83 +234,35 @@ export default Vue.extend({
       this.emploi_du_temps = [
         {
           name: 'Les Petits',
-          horraire: 'Mardi',
+          horraire: 'Lundi',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
           prix: 24,
-          nbr: '18/20',
+          nbr: '5/20',
           note: 'Lorem ipsum dolor sit amet, consectet'
 
         },
         {
-          name: 'Les Petits',
-          horraire: 'Mardi',
+          name: 'Les Grands',
+          horraire: 'Mardi - 16H30',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
           prix: 24,
           nbr: '18/20',
           note: 'Lorem ipsum dolor sit amet, consectet'
         },
         {
-          name: 'Les Petits',
-          horraire: 'Mardi',
+          name: 'Peinture a l\'huile',
+          horraire: '1/10 - 12H',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
+          prix: 12,
+          nbr: '10/20',
           note: 'Lorem ipsum dolor sit amet, consectet'
         },
         {
-          name: 'Les Petits',
-          horraire: 'Mardi',
+          name: 'Peinture à l\'eau',
+          horraire: 'Jeudi',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
-          note: 'Lorem ipsum dolor sit amet, consectet'
-        },
-        {
-          name: 'Les Petits',
-          horraire: 'Mardi',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
-          note: 'Lorem ipsum dolor sit amet, consectet'
-        },
-        {
-          name: 'Les Petits',
-          horraire: 'Mardi',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
-          note: 'Lorem ipsum dolor sit amet, consectet'
-        },
-        {
-          name: 'Les Petits',
-          horraire: 'Mardi',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
-          note: 'Lorem ipsum dolor sit amet, consectet'
-        },
-        {
-          name: 'Les Petits',
-          horraire: 'Mardi',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
-          note: 'Lorem ipsum dolor sit amet, consectet'
-        },
-        {
-          name: 'Les Petits',
-          horraire: 'Mardi',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
-          note: 'Lorem ipsum dolor sit amet, consectet'
-        },
-        {
-          name: 'Les Petits',
-          horraire: 'Mardi',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
-          prix: 24,
-          nbr: '18/20',
+          prix: 5,
+          nbr: '20/20',
           note: 'Lorem ipsum dolor sit amet, consectet'
         }
       ]
