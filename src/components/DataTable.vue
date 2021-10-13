@@ -19,92 +19,35 @@
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
+        <v-form>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="recherche"
+                  :append-outer-icon="recherche ? 'mdi-send' : 'mdi-microphone'"
+                  filled
+                  clear-icon="mdi-close-circle"
+                  clearable
+                  label="Recherche"
+                  outlined
+                  type="text"
+                  @keyup="search"
+                  @click:clear="clearMessage"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
         <v-dialog
           v-model="dialog"
           max-width="500px"
         >
-          <!-- <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              color="primary"
-              dark
-              class="mb-2"
-              v-bind="attrs"
-              v-on="on"
-            >
-              Nouveau cours
-            </v-btn>
-          </template> -->
+
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ formTitle }}</span>
             </v-card-title>
-
-            <!-- <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Nom"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.horraire"
-                      label="Horraire"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.description"
-                      label="Description"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.prix"
-                      label="Prix"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.nbr"
-                      label="Nbr d\'élèves"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.note"
-                      label="Note"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text> -->
 
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -115,13 +58,6 @@
               >
                 Annuler
               </v-btn>
-              <!-- <v-btn
-                color="blue darken-1"
-                text
-                @click="save"
-              >
-                Sauvegarder
-              </v-btn> -->
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -139,13 +75,6 @@
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
-      <!-- <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon> -->
       <v-icon
         small
         @click="deleteItem(item)"
@@ -154,18 +83,10 @@
       </v-icon>
       <v-icon
       small
-    >
-      mdi-message-text
-    </v-icon>
-    </template>
-    <!-- <template v-slot:no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
       >
-        Reset
-      </v-btn>
-    </template> -->
+        mdi-message-text
+      </v-icon>
+    </template>
   </v-data-table>
 </template>
 
@@ -175,6 +96,10 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'DataTable',
   data: () => ({
+    show: false,
+    marker: true,
+    iconIndex: 0,
+
     selected: [],
     dialog: false,
     dialogDelete: false,
@@ -192,36 +117,12 @@ export default Vue.extend({
       { text: 'Note', value: 'note' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
-    emploi_du_temps: [
+    emploi_du_temps: []
 
-    ]
-    // editedIndex: -1,
-    // editedItem: {
-    //   name: '',
-    //   horraire: '',
-    //   description: '',
-    //   prix: 0,
-    //   nbr: '',
-    //   note: ''
-    // },
-    // defaultItem: {
-    //   name: '',
-    //   horraire: '',
-    //   description: '',
-    //   prix: 0,
-    //   nbr: '',
-    //   note: ''
-    // }
   }),
-  // computed: {
-  //   formTitle () {
-  //     return this.editedIndex === -1 ? 'Nouveau cours' : 'Modifier cours'
-  //   }
-  // },
+
   watch: {
-    // dialog (val) {
-    //   val || this.close()
-    // },
+
     dialogDelete (val) {
       val || this.closeDelete()
     }
@@ -230,6 +131,19 @@ export default Vue.extend({
     this.initialize()
   },
   methods: {
+    clearMessage () {
+      this.recherche = ''
+    },
+
+    search () {
+      console.log(this.recherche)
+      for (var i = 0; i < this.emploi_du_temps.length; i++) {
+        if (this.emploi_du_temps[i].name === this.recherche) {
+          console.log(this.emploi_du_temps[i])
+        }
+      }
+    },
+
     initialize () {
       this.emploi_du_temps = [
         {
@@ -267,11 +181,7 @@ export default Vue.extend({
         }
       ]
     },
-    // editItem (item) {
-    //   this.editedIndex = this.emploi_du_temps.indexOf(item)
-    //   this.editedItem = Object.assign({}, item)
-    //   this.dialog = true
-    // },
+
     deleteItem (item) {
       this.editedIndex = this.emploi_du_temps.indexOf(item)
       this.editedItem = Object.assign({}, item)
@@ -281,13 +191,7 @@ export default Vue.extend({
       this.emploi_du_temps.splice(this.editedIndex, 1)
       this.closeDelete()
     },
-    // close () {
-    //   this.dialog = false
-    //   this.$nextTick(() => {
-    //     this.editedItem = Object.assign({}, this.defaultItem)
-    //     this.editedIndex = -1
-    //   })
-    // },
+
     closeDelete () {
       this.dialogDelete = false
       this.$nextTick(() => {
@@ -295,14 +199,6 @@ export default Vue.extend({
         this.editedIndex = -1
       })
     }
-    // save () {
-    //   if (this.editedIndex > -1) {
-    //     Object.assign(this.emploi_du_temps[this.editedIndex], this.editedItem)
-    //   } else {
-    //     this.emploi_du_temps.push(this.editedItem)
-    //   }
-    //   this.close()
-    // }
   }
 })
 </script>
