@@ -43,7 +43,7 @@ export default {
       items: [
         { title: 'Planning', icon: 'mdi-bulletin-board' },
         { title: 'Liste des cours', icon: 'mdi-image' },
-        { title: 'Liste des Eleves', icon: 'mdi-account' },
+        { title: 'Liste des éleves', icon: 'mdi-account' },
         { title: 'Administration du site', icon: 'mdi-pencil-box-outline' }
       ]
     }
