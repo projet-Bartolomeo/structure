@@ -3,6 +3,7 @@
     v-model="selected"
     :headers="headers"
     :items="emploi_du_temps"
+    :search="search"
     show-select
     item-key="name"
     class="elevation-1"
@@ -24,16 +25,18 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                  v-model="recherche"
+                  v-model="search"
+                  hide-actions
                   :append-outer-icon="recherche ? 'mdi-send' : 'mdi-microphone'"
                   filled
                   clear-icon="mdi-close-circle"
                   clearable
-                  label="Recherche"
                   outlined
                   type="text"
-                  @keyup="search"
                   @click:clear="clearMessage"
+                  label="Search"
+                  single-line
+                  hide-details
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -95,31 +98,32 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'DataTable',
-  data: () => ({
-    show: false,
-    marker: true,
-    iconIndex: 0,
-
-    selected: [],
-    dialog: false,
-    dialogDelete: false,
-    headers: [
-      {
-        text: 'Nom',
-        align: 'start',
-        sortable: false,
-        value: 'name'
-      },
-      { text: 'Horraire', value: 'horraire' },
-      { text: 'Description', value: 'description' },
-      { text: 'Prix', value: 'prix' },
-      { text: 'Nbr inscrit / Nbr d\'élèves', value: 'nbr' },
-      { text: 'Note', value: 'note' },
-      { text: 'Actions', value: 'actions', sortable: false }
-    ],
-    emploi_du_temps: []
-
-  }),
+  data: () => {
+    return {
+      show: false,
+      marker: true,
+      iconIndex: 0,
+      search: '',
+      selected: [],
+      dialog: false,
+      dialogDelete: false,
+      headers: [
+        {
+          text: 'Nom',
+          align: 'start',
+          sortable: false,
+          value: 'name'
+        },
+        { text: 'Horraire', value: 'horraire' },
+        { text: 'Description', value: 'description' },
+        { text: 'Prix', value: 'prix' },
+        { text: 'Nbr inscrit / Nbr d\'élèves', value: 'nbr' },
+        { text: 'Note', value: 'note' },
+        { text: 'Actions', value: 'actions', sortable: false }
+      ],
+      emploi_du_temps: []
+    }
+  },
 
   watch: {
 
@@ -132,21 +136,13 @@ export default Vue.extend({
   },
   methods: {
     clearMessage () {
-      this.recherche = ''
-    },
-
-    search () {
-      console.log(this.recherche)
-      for (var i = 0; i < this.emploi_du_temps.length; i++) {
-        if (this.emploi_du_temps[i].name === this.recherche) {
-          console.log(this.emploi_du_temps[i])
-        }
-      }
+      this.search = ''
     },
 
     initialize () {
       this.emploi_du_temps = [
         {
+          display: false,
           name: 'Les Petits',
           horraire: 'Lundi',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed ex vitae eros tincidunt iaculis ac eu lacus. Aenean at nisi feugiat, venenatis purus nec, hendrerit arcu. Aenean sit amet',
