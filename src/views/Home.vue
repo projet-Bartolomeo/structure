@@ -1,16 +1,16 @@
 <template>
-  <hello-world />
+  <side-bar />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from '../components/HelloWorld.vue'
+import SideBar from '../components/SideBar.vue'
 
 export default Vue.extend({
   name: 'Home',
 
   components: {
-    HelloWorld
+    SideBar
   }
 })
 </script>
