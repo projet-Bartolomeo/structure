@@ -21,6 +21,11 @@ const routes: Array<RouteConfig> = [
     path: '/Calendar',
     name: 'Calendrier',
     component: Calendar
+  },
+  {
+    path: '/Data',
+    name: 'Data',
+    component: DataTable
   }
 ]
 
