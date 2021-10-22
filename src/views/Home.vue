@@ -1,8 +1,16 @@
 <template>
-  <h1>Hello</h1>
+<main>
+  <button @click="open=!open">Nouveau message</button>
+  <popup v-if="open">
+    <button @click="open=!open" class="popup-close">
+      close
+    </button>
+  </popup>
+</main>
 </template>
 
 <script lang="ts">
+import Popup from '@/components/Popup.vue'
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -10,6 +18,16 @@ export default Vue.extend({
   
 
   components: {
+    Popup
+  },
+  data () {
+    return {
+      open: false
+    }
   }
 })
 </script>
+
+<style>
+
+</style>
