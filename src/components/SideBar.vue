@@ -9,14 +9,15 @@
       <v-navigation-drawer permanent st style="background : #122132;">
         <v-list-item>
           <v-list-item-content>
-             <v-list-item-title  style="color:white">
+             <v-list-item-title  style="color:white"
+                                class="text-center">
               Di Bartolomeo
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-  
+
         <v-divider></v-divider>
-  
+
         <v-list
           dense
           nav
@@ -25,9 +26,9 @@
             v-for="item in items"
             :key="item.title"
             link
-            
+            class="mx-5"
           >
-           
+
             <v-list-item-icon>
               <v-icon style="color:white">{{ item.icon }}</v-icon>
             </v-list-item-icon>
