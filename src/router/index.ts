@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-import DataTable from '../components/DataTable.vue'
+import ListeCours from '../views/ListeCours.vue'
 
 Vue.use(VueRouter)
 
@@ -20,9 +20,9 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/Data',
-    name: 'Data',
-    component: DataTable
+    path: '/Liste_Cours',
+    name: 'ListeCours',
+    component: ListeCours
   }
 ]
 
