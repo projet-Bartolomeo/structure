@@ -27,11 +27,12 @@ export default {
     background-color: rgb(107, 103, 103,0.5);
 
     .popup-inner {
-        background-color: blanchedalmond;
-        padding-left: 200px;
-        padding-right: 200px;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        background-color: rgb(255, 255, 255);
+        // margin: 100px;
+        // padding-left: 200px;
+        // padding-right: 200px;
+        // padding-top: 50px;
+        // padding-bottom: 50px;
     }
 }
 </style>

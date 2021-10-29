@@ -2,10 +2,12 @@
 <main>
   <button @click="open=!open">Nouveau message</button>
   <popup v-if="open">
-    <hello-world />
+    <div class="d-flex justify-end">
     <button @click="open=!open" class="popup-close">
-      close
+      <v-icon>mdi-close</v-icon>
     </button>
+    </div>
+    <hello-world />
   </popup>
 </main>
 </template>
@@ -31,5 +33,8 @@ export default Vue.extend({
 </script>
 
 <style>
-
+.popup-close {
+  display: flex;
+  align-items: end;
+}
 </style>
